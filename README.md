@@ -28,7 +28,14 @@ https://github.com/user-attachments/assets/5f599ad0-0922-414b-a8ab-e789da068efa
 - [ ] Release **data preprocessing code**
 - [ ] Release **user-friendly interface**
 
+## 🛠️ Environment Setup
 
+```bash
+conda create -n egox python=3.10 -y
+conda activate egox
+pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+pip install -r requirements.txt
+```
 
 ## 📝 Citation
 

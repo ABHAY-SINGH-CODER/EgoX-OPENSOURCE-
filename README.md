@@ -100,7 +100,7 @@ your_dataset/              # Your custom dataset folder
         └── ...
 ```
 
-Then, modify `scripts/infer.sh` (or create a new script) to point to your data paths:
+Then, modify `scripts/infer_itw.sh` (or create a new script) to point to your data paths:
 
 ```bash
 python3 infer.py \
@@ -109,11 +109,11 @@ python3 infer.py \
     --ego_prior_video_path ./example/your_dataset/ego_prior_path.txt \
     --meta_data_file ./example/your_dataset/camera_params.json \
     --depth_root ./example/your_dataset/depth_maps/ \
-    --sft_path ./Wan2.1-I2V-14B-480P-Diffusers/transformer \
-    --lora_path ./results/pytorch_lora_weights.safetensors \
+    --model_path ./checkpoints/pretrained_model/Wan2.1-I2V-14B-480P-Diffusers \
+    --lora_path ./checkpoints/EgoX/pytorch_lora_weights.safetensors \
     --lora_rank 256 \
     --out ./results \
-    --seed 846514 \
+    --seed 42 \
     --use_GGA \
     --cos_sim_scaling_factor 3.0
 ```

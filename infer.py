@@ -76,17 +76,13 @@ def main(args):
     import shutil
     from transformers import CLIPVisionModel
 
-    sft_path=args.sft_path
+    model_path=args.model_path
+    transformer_path = os.path.join(model_path, 'transformer')
     lora_path=args.lora_path
     dtype=torch.bfloat16
 
     from core.finetune.models.wan_i2v.custom_transformer import WanTransformer3DModel_GGA as WanTransformer3DModel
-    config_path = os.path.join(sft_path, 'config.json')
-    model_path = './Wan2.1-I2V-14B-480P-Diffusers'
-    src_config_path = os.path.join(model_path, 'transformer', 'config.json')
-    if not os.path.exists(config_path):
-        shutil.copyfile(src_config_path, config_path)
-    transformer = WanTransformer3DModel.from_pretrained(sft_path, torch_dtype=dtype)
+    transformer = WanTransformer3DModel.from_pretrained(transformer_path, torch_dtype=dtype)
 
     image_encoder = CLIPVisionModel.from_pretrained(model_path, subfolder="image_encoder", torch_dtype=torch.float32)
 
@@ -293,7 +289,7 @@ if __name__ == "__main__":
     parser.add_argument("--exo_video_path", type=str, required=True, help="exo video path list.txt")
     parser.add_argument("--ego_prior_video_path", type=str, required=True, help="ego prior video path list.txt")
     parser.add_argument("--idx", type=int, default=-1)
-    parser.add_argument("--sft_path", type=str, default=None, help="The path of the SFT weights to be used")
+    parser.add_argument("--model_path", type=str, default=None, help="The path of the SFT weights to be used")
     parser.add_argument("--out", type=str, default="/outputs", help="The path save generated video")
     parser.add_argument("--lora_path", type=str, default=None, help="The path of the LoRA weights to be used")
     parser.add_argument("--lora_rank", type=int, default=64, help="The rank of the LoRA weights to be used")

@@ -104,12 +104,14 @@ your_dataset/              # Your custom dataset folder
 <details>
 <summary><b>caption.txt</b> - Text prompts for each video (one per line)</summary>
 
-Each line contains a text description for the corresponding video.
+Each line contains a detailed text description for the corresponding video, including both exocentric and egocentric scene overviews and action analyses.
 
+**Example:**
 ```
-A person walking in a park
-Someone cooking in the kitchen
-A person playing guitar
+[Exo view]\n**Scene Overview:**\nThe scene is set on a street in front of a hospital, indicated by the large "EMERGENCY" sign visible in the background. The ground is asphalt, marked with yellow lines, and appears to have debris scattered across it...\n\n[Ego view]\n**Scene Overview:**\nFrom the inferred first-person perspective, the environment appears chaotic and filled with smoke...
+[Exo view]\n**Scene Overview:**\nThe environment is a clinical or laboratory-like setting characterized by a smooth, gray ceiling with fluorescent lighting fixtures...
+[Exo view]\n**Scene Overview:**\nThe environment is a dense forest with a mixture of coniferous trees and underbrush...
+[Exo view]\n**Scene Overview:**\nThe scene is set in a table tennis arena, featuring a black rubberized floor with the text "PARIS 2024" printed in white...
 ```
 
 </details>
@@ -117,12 +119,14 @@ A person playing guitar
 <details>
 <summary><b>exo_path.txt</b> - Paths to exocentric videos (one per line)</summary>
 
-Each line contains the absolute or relative path to an exocentric video file.
+Each line contains the relative or absolute path to an exocentric video file. The order should match the corresponding lines in `caption.txt` and `ego_prior_path.txt`.
 
+**Example:**
 ```
-/path/to/video1.mp4
-/path/to/video2.mp4
-/path/to/video3.mp4
+./example/in_the_wild/videos/joker/exo.mp4
+./example/in_the_wild/videos/ironman/exo.mp4
+./example/in_the_wild/videos/hulk_blackwidow/exo.mp4
+./example/in_the_wild/videos/tabletennis/exo.mp4
 ```
 
 </details>
@@ -130,12 +134,14 @@ Each line contains the absolute or relative path to an exocentric video file.
 <details>
 <summary><b>ego_prior_path.txt</b> - Paths to egocentric prior videos (one per line)</summary>
 
-Each line contains the absolute or relative path to an egocentric prior video file.
+Each line contains the relative or absolute path to an egocentric prior video file. The order should match the corresponding lines in `caption.txt` and `exo_path.txt`.
 
+**Example:**
 ```
-/path/to/ego_prior1.mp4
-/path/to/ego_prior2.mp4
-/path/to/ego_prior3.mp4
+./example/in_the_wild/videos/joker/ego_Prior.mp4
+./example/in_the_wild/videos/ironman/ego_Prior.mp4
+./example/in_the_wild/videos/hulk_blackwidow/ego_Prior.mp4
+./example/in_the_wild/videos/tabletennis/ego_Prior.mp4
 ```
 
 </details>
@@ -143,18 +149,41 @@ Each line contains the absolute or relative path to an egocentric prior video fi
 <details>
 <summary><b>camera_params.json</b> - Camera parameters in JSON format</summary>
 
-JSON file containing camera intrinsic and extrinsic parameters for each video.
+JSON file containing camera intrinsic and extrinsic parameters for each video. The structure includes `test_datasets` array with entries for each video containing camera intrinsics/extrinsics and ego intrinsics/extrinsics.
 
+**Example:**
 ```json
 {
-  "video1": {
-    "intrinsic": [...],
-    "extrinsic": [...]
-  },
-  "video2": {
-    "intrinsic": [...],
-    "extrinsic": [...]
-  }
+    "test_datasets": [
+        {
+            "path": "./example/in_the_wild/exo_videos/joker.mp4",
+            "best_camera": "none",
+            "source_frame_start": 0,
+            "source_frame_end": 48,
+            "camera_intrinsics": [
+                [634.47327, 0.0, 392.0],
+                [0.0, 634.4733, 224.0],
+                [0.0, 0.0, 1.0]
+            ],
+            "camera_extrinsics": [
+                [1.0, 0.0, 0.0, 0.0],
+                [0.0, 1.0, 0.0, 0.0],
+                [0.0, 0.0, 1.0, 0.0]
+            ],
+            "ego_intrinsics": [
+                [150.0, 0.0, 255.5],
+                [0.0, 150.0, 255.5],
+                [0.0, 0.0, 1.0]
+            ],
+            "ego_extrinsics": [
+                [[0.6263, 0.7788, -0.0336, 0.3432],
+                 [-0.0557, 0.0018, -0.9984, 2.3936],
+                 [-0.7776, 0.6272, 0.0445, 0.1299]],
+                ...
+            ]
+        },
+        ...
+    ]
 }
 ```
 

@@ -67,7 +67,16 @@ python -c "from huggingface_hub import snapshot_download; snapshot_download(repo
 
 ### 📥 EgoX Model Weights Download
 
-Download the trained EgoX LoRA weights from [Google Drive](https://drive.google.com/file/d/1Q7j7LVI4YiSkwzNMBBiyLS1rT3HMcNVB/view?usp=drive_link) and save them to the `checkpoints/EgoX/` folder.
+Download the trained EgoX LoRA weights using one of the following methods:
+
+**Option 1: Google Drive**
+- Download from [Google Drive](https://drive.google.com/file/d/1Q7j7LVI4YiSkwzNMBBiyLS1rT3HMcNVB/view?usp=drive_link) and save to the `checkpoints/EgoX/` folder.
+
+**Option 2: Hugging Face**
+```bash
+pip install huggingface_hub
+python -c "from huggingface_hub import snapshot_download; snapshot_download(repo_id='DAVIAN-Robotics/EgoX', local_dir='./checkpoints/EgoX', allow_patterns='*.safetensors')"
+```
 
 ## 🚀 Inference
 

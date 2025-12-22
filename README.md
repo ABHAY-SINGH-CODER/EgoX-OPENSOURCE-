@@ -103,10 +103,10 @@ To run inference with your own data, prepare the following file structure:
 your_dataset/              # Your custom dataset folder
 ├── meta.json              # Meta information for each video
 ├── videos/                # Videos directory
-    └── take_name/
-        ├── ego_Prior.mp4
-        ├── exo.mp4
-        └── ...
+│   └── take_name/
+│       ├── ego_Prior.mp4
+│       ├── exo.mp4
+│       └── ...
 └── depth_maps/            # Depth maps directory
     └── take_name/
         ├── frame_000.npy

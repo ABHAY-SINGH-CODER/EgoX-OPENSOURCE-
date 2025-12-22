@@ -270,11 +270,11 @@ def extract_captions_for_task(task_path, num_frames=4):
     if os.path.exists(ego_gt_path):
         ego_frames = get_frame_files(ego_gt_path, num_frames)
         if not ego_frames:
-            print(f"Warning: Incomplete or missing ego sequence in {ego_gt_path}. Proceeding with inferred pitcher perspective.")
+            print(f"Warning: Incomplete or missing ego sequence in {ego_gt_path}. Proceeding with inferred perspective.")
         else:
             print(f"✓ Valid sequence found: {len(exo_frames)} exo frames and {len(ego_frames)} ego frames")
     else:
-        print(f"✓ Valid exo sequence found: {len(exo_frames)} frames. No ego frames supplied; inferring pitcher perspective.")
+        print(f"✓ Valid exo sequence found: {len(exo_frames)} frames. No ego frames supplied; inferring perspective.")
     
     # Prepare content for GPT-4o
     content = [
@@ -287,7 +287,7 @@ def extract_captions_for_task(task_path, num_frames=4):
                     "Provide the scene overview and frame-by-frame action analysis as specified in your instructions."
                     if ego_frames
                     else "Only the exocentric (third-person) view is provided. "
-                    "Infer the pitcher’s first-person experience and deliver the scene overview and action analysis exactly as instructed."
+                    "Infer the first-person experience and deliver the scene overview and action analysis exactly as instructed."
                 )
             )
         }
@@ -426,7 +426,7 @@ def extract_caption_from_video(exo_path, ego_path=None, num_frames=4):
                     "Provide the scene overview and frame-by-frame action analysis as specified in your instructions."
                     if ego_images
                     else "Only the exocentric (third-person) view is provided. "
-                    "Infer the pitcher’s first-person experience and deliver the scene overview and action analysis exactly as instructed."
+                    "Infer the first-person experience and deliver the scene overview and action analysis exactly as instructed."
                 )
             )
         }

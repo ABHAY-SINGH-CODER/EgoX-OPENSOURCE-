@@ -16,21 +16,6 @@
 https://github.com/user-attachments/assets/5f599ad0-0922-414b-a8ab-e789da068efa
 
 
-## 📋 TODO
-
-### 🔹 This Week
-- [x] Release **inference code**
-- [x] Release **model weights**
-- [x] Release **data preprocessing code (for inference)**
-
----
-
-### 🔹 By End of December
-- [x] Release **training code**
-- [x] Release **data preprocessing code (for train)**
-
-### 🔹 Ongoing
-- [ ] Release **user-friendly interface**
 
 ## 🛠️ Environment Setup
 
